@@ -23,7 +23,7 @@
       "executor": "nx:run-commands",
       "outputs": [],
       "options": {
-        "command": "npx semantic-release-plus --extends ./packages/core/release.config.js",
+        "command": "npx semantic-release-plus --extends ./packages/signallingjs/release.config.js",
         "parallel": false
       }
     },
