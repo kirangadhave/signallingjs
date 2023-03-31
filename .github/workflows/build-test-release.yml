@@ -16,9 +16,6 @@ env:
   GIT_COMMITTER_NAME: kirangadhave
   GIT_COMMITTER_EMAIL: kirangadhave2@gmail.com
 
-permissions:
-  packages:
-
 jobs:
   release:
     name: Build -> Test -> Release
