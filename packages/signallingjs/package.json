@@ -1,0 +1,17 @@
+{
+  "name": "signallingjs",
+  "version": "0.0.0-semantic-release",
+  "type": "commonjs",
+  "main": "./index.js",
+  "types": "./index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kirangadhave/signallingjs"
+  },
+  "exports": {
+    ".": {
+      "import": "./index.mjs",
+      "require": "./index.js"
+    }
+  }
+}
