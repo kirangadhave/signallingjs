@@ -1,3 +1,10 @@
+# [1.0.0-alpha.2](https://github.com/kirangadhave/signallingjs/compare/signallingjs@1.0.0-alpha.1...signallingjs@1.0.0-alpha.2) (2023-03-31)
+
+
+### Bug Fixes
+
+* **signallingjs:** fixed output types ([c8ae312](https://github.com/kirangadhave/signallingjs/commit/c8ae31295fdceace3fc98503002302312a488d16))
+
 # 1.0.0-alpha.1 (2023-03-31)
 
 
