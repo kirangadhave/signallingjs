@@ -35,7 +35,7 @@ jobs:
           GITHUB_TOKEN: ${{ steps.get_workflow_token.outputs.token }}
         with:
           fetch-depth: 0
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: $GITHUB_TOKEN
 
       - name: Track main
         run: git branch --track main origin/main || echo "Already done"
