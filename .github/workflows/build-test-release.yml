@@ -16,14 +16,26 @@ env:
   GIT_COMMITTER_NAME: kirangadhave
   GIT_COMMITTER_EMAIL: kirangadhave2@gmail.com
 
+permissions:
+  packages:
+
 jobs:
   release:
     name: Build -> Test -> Release
     runs-on: ubuntu-latest
 
     steps:
+      - name: Get Token
+        id: get_workflow_token
+        uses: peter-murray/workflow-application-token-action@v1
+        with:
+          application_id: ${{ secrets.APPLICATION_ID }}
+          application_private_key: ${{ secrets.APPLICATION_PRIVATE_KEY }}
+
       - name: Checkout
         uses: actions/checkout@v3
+        env:
+          GITHUB_TOKEN: ${{ steps.get_workflow_token.outputs.token }}
         with:
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -72,7 +84,7 @@ jobs:
       - name: Release SignallingJS
         if: ${{ success() && (github.event_name != 'pull_request' || github.event.action == 'closed' && github.event.pull_request.merged == true) }}
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ steps.get_workflow_token.outputs.token }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           RUN=CI npx nx run signallingjs:release
