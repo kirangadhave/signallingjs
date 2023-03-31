@@ -1,8 +1,8 @@
 {
   "name": "signallingjs",
   "version": "0.0.0-semantic-release",
-  "type": "commonjs",
-  "main": "./index.js",
+  "main": "./index.cjs",
+  "module": "./index.js",
   "types": "./index.d.ts",
   "repository": {
     "type": "git",
@@ -10,8 +10,8 @@
   },
   "exports": {
     ".": {
-      "import": "./index.mjs",
-      "require": "./index.js"
+      "import": "./index.js",
+      "require": "./index.cjs"
     }
   }
 }
