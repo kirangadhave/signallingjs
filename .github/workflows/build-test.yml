@@ -41,34 +41,29 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 'lts/*'
-          cache: 'yarn'
+          cache: 'npm'
 
-      - name: Install yarn
-        run: npm install -g yarn
-
-      - name: Get yarn cache directory path
-        id: yarn-cache-dir-path
-        run: echo "dir=$(yarn config get cacheFolder)" >> $GITHUB_OUTPUT
-
-      - name: Cache yarn dependencies
+      - name: Cache node modules
         uses: actions/cache@v3
-        id: yarn-cache
+        id: npm-cache
+        env:
+          cache-name: cache-node-modules
         with:
-          path: |
-            ${{ steps.yarn-cache-dir-path.outputs.dir }}
-            **\node_modules
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            ${{ runner.os }}-yarn-
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
 
       - name: Install dependencies
-        if: steps.yarn-cache.outputs.cache-hit != 'true'
-        run: yarn install
+        if: steps.npm-cache.outputs.cache-hit != 'true'
+        run: npm install
 
       - name: Build
         run: |
-          RUN=CI yarn run build-affected-libs
+          RUN=CI npm run build-affected-libs
 
       - name: Test
         run: |
-          RUN=CI yarn run test-affected-libs
+          RUN=CI npm run test-affected-libs
