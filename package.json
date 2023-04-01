@@ -52,6 +52,7 @@
   "size-limit": [
     {
       "path": "dist/packages/signallingjs/index.js",
+      "import": "*",
       "limit": "5 KB"
     }
   ],
