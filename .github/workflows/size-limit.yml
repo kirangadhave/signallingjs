@@ -16,5 +16,5 @@ jobs:
       - uses: actions/checkout@v3
       - uses: andresz1/size-limit-action@v1
         with:
-          build_script: npx nx run singallingjs:build
+          build_script: signallingjs:build:size-limit
           github_token: ${{ secrets.GITHUB_TOKEN }}
